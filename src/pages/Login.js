@@ -17,7 +17,7 @@ export default function Login({navigation}) {
         const {id_usuario,nome_usuario} = Object(...response.data)
         console.log(id_usuario)
         await AsyncStorage.setItem('user',id_usuario)
-        navigation.navigate('BuscaMaterial');
+        navigation.navigate('BuscaMaterial')
     }
 
   return (
