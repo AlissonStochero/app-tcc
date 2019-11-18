@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState, useEffect} from 'react';
 import { StyleSheet, AsyncStorage, KeyboardAvoidingView, Text, View, TextInput, TouchableOpacity} from 'react-native';
 
 import api from '../services/api';
@@ -8,16 +8,26 @@ export default function Login({navigation}) {
 
     const [usuario,setUsuario] = useState('');
     const [senha,setSenha] = useState('');
-
+    useEffect(()=>{
+        AsyncStorage.getItem('id_usuario').then(id_usuario=>{
+            if(id_usuario)
+                navigation.navigate('BuscaMaterial');
+        })
+    },[])
     async function logar(){
         const response = await api.post('/login',{
             usuario,
             senha,
         })
         const {id_usuario,nome_usuario} = Object(...response.data)
-        console.log(id_usuario)
-        await AsyncStorage.setItem('user',id_usuario)
-        navigation.navigate('BuscaMaterial');
+        try{
+            await AsyncStorage.setItem('id_usuario',toString(id_usuario))
+            await AsyncStorage.setItem('nome_usuario',nome_usuario)
+            navigation.navigate('BuscaMaterial');
+        }catch(error){
+            console.log(error)
+        }
+        
     }
 
   return (
