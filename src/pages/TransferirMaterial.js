@@ -93,7 +93,7 @@ export default function TransferirMaterial({ navigation }) {
             </Picker>
             </View>
             <View style={styles.form}>
-            <Text style={styles.label}>Departamento destino: {console.log(depto)}</Text>
+            <Text style={styles.label}>Departamento destino: </Text>
                 <Picker
                 style={styles.select}
                 selectedValue={deptoSelect}
