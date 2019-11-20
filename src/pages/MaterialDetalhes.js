@@ -14,8 +14,9 @@ export default function MaterialDetalhes({navigation}) {
         //console.log(JSON.stringify(navigation.getParam('material')))   
     },[])
 
-    async function buscarMaterial(){
-        
+    async function TransferirMaterial(){
+        //setMaterial(JSON.stringify(material))
+        navigation.navigate('TransferirMaterial',{material})
     }
 
   return (
@@ -41,7 +42,7 @@ export default function MaterialDetalhes({navigation}) {
             <Text style={styles.label}>Depto pertencente: </Text>
             <Text style={styles.dados}>{material.nome_depto}</Text>
         </View>        
-        <TouchableOpacity onPress={buscarMaterial} style={styles.button}>
+        <TouchableOpacity onPress={TransferirMaterial} style={styles.button}>
                 <Text style={styles.textButton}>Transferir Material</Text>
         </TouchableOpacity>
     </KeyboardAvoidingView>
