@@ -8,16 +8,11 @@ export default function TransferirMaterial({ navigation }) {
 
 
     const [material, setMaterial] = useState('');
-    const [unidade, setUnidade] = useState([]);
-    const [unidadeSelect, setUnidadeSelect]= useState('')
     const [depto, setDepto] = useState([])
     const [deptoSelect,setDeptoSelect] = useState('')
 
     async function initUnidadeDepto() {
-        let response = await api.post('/allunidades')
-        const un = JSON.stringify(response.data)
-        setUnidade(JSON.parse(un))
-        const res = await api.post('/alldepto')
+        const res = await api.post('/alldeptoandunidade')
         //console.log(res.data)
         const dep = JSON.stringify(res.data)
         setDepto(JSON.parse(dep))
@@ -44,15 +39,19 @@ export default function TransferirMaterial({ navigation }) {
     }
 
     async function transferir(){
-        console.log(unidadeSelect)
+        const res = await api.post('/transferirmaterial',{
+            material,
+            depto:deptoSelect,
+        })
+        if(res.data === true){
+            alert('Material Transferido')
+            navigation.navigate('BuscaMaterial')
+        }
     }
 
-    let unidades = unidade.map((value,k)=>{
-        return <Picker.Item key={k} label={value.nome} value={value} />
-    })
-
     let deptos = depto.map((value,k)=>{
-        return <Picker.Item key={k} label={value.nome} value={value} />
+        //console.log(depto)
+        return <Picker.Item key={k} label={`${value.unidade_nome} - ${value.departamento_nome}`} value={value} />
     })
 
     //<Picker.Item key={0} label={unidade.nome} value={unidade.id_unidade} />
@@ -81,17 +80,7 @@ export default function TransferirMaterial({ navigation }) {
                 <Text style={styles.label}>Depto pertencente: </Text>
                 <Text style={styles.dados}>{material.nome_depto}</Text>
             </View>
-            <View style={styles.form}>
-                <Text style={styles.label}>Unidade destino: </Text>
-                <Picker
-                style={styles.select}
-                selectedValue={unidadeSelect}
-                onValueChange={(itemValue, itemIndex) =>
-                    setaUnidade(itemValue)
-                }>
-                {unidades}
-            </Picker>
-            </View>
+            
             <View style={styles.form}>
             <Text style={styles.label}>Departamento destino: </Text>
                 <Picker
