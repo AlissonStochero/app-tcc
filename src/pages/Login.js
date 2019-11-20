@@ -27,7 +27,6 @@ export default function Login({navigation}) {
         }catch(error){
             console.log(error)
         }
-        
     }
 
   return (
