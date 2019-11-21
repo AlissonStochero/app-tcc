@@ -20,6 +20,8 @@ export default class BarcodeScannerExample extends React.Component {
 
   render() {
     const { hasCameraPermission, scanned } = this.state;
+    const {navigate} = this.props.navigation;
+    
 
     if (hasCameraPermission === null) {
       return <Text>Requesting for camera permission</Text>;
@@ -39,15 +41,16 @@ export default class BarcodeScannerExample extends React.Component {
           style={StyleSheet.absoluteFillObject}
         />
 
-        {scanned && (
           <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false })} />
-        )}
+      
       </View>
     );
   }
 
-  handleBarCodeScanned = ({ type, data }) => {
+  handleBarCodeScanned = ({ type, data}) => {
     this.setState({ scanned: true });
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    const dado = JSON.stringify(data)
+    this.props.navigation.navigate('BuscaMaterial',{dado})
   };
 }

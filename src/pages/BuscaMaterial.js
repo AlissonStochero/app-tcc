@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState,useEffect} from 'react';
 import { StyleSheet, AsyncStorage, KeyboardAvoidingView, Text, View, TextInput, TouchableOpacity} from 'react-native';
 
 import api from '../services/api';
@@ -7,6 +7,15 @@ export default function BuscaMaterial({navigation}) {
 
 
     const [codPat,setCodPat] = useState('');
+
+    useEffect(()=>{
+        //console.log(JSON.parse(navigation.getParam('dado')))
+        if(JSON.parse(navigation.getParam('dado'))!==null){
+            setCodPat(JSON.parse(navigation.getParam('dado')))
+            console.log(codPat)
+            buscarMaterial();
+        }
+    },[])
 
     async function buscarMaterial(){
         const response = await api.post('/matbypat',{
