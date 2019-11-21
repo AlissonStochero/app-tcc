@@ -11,7 +11,7 @@ export default function Login({navigation}) {
     useEffect(()=>{
         AsyncStorage.getItem('id_usuario').then(id_usuario=>{
             if(id_usuario)
-                navigation.navigate('BuscaMaterial');
+                navigation.navigate('teste');
         })
     },[])
     async function logar(){
