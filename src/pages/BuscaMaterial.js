@@ -1,6 +1,6 @@
 import React , {useState,useEffect} from 'react';
 import { StyleSheet, AsyncStorage, KeyboardAvoidingView, Text, View, TextInput, TouchableOpacity} from 'react-native';
-
+import Icon from 'react-native-vector-icons/FontAwesome'
 import api from '../services/api';
 
 export default function BuscaMaterial({navigation}) {
@@ -9,10 +9,9 @@ export default function BuscaMaterial({navigation}) {
     const [codPat,setCodPat] = useState('');
 
     useEffect(()=>{
-        //console.log(JSON.parse(navigation.getParam('dado')))
-        if(JSON.parse(navigation.getParam('dado'))!==null){
+        //console.log(navigation.getParam('dado'))
+        if(navigation.getParam('dado')!==undefined){
             setCodPat(JSON.parse(navigation.getParam('dado')))
-            console.log(codPat)
             buscarMaterial();
         }
     },[])
@@ -28,6 +27,10 @@ export default function BuscaMaterial({navigation}) {
       }catch(error){
           console.log(error)
       }
+    }
+
+    function camera(){
+        navigation.navigate('teste')
     }
 
   return (
@@ -46,6 +49,9 @@ export default function BuscaMaterial({navigation}) {
             />
             <TouchableOpacity onPress={buscarMaterial} style={styles.button}>
                 <Text style={styles.textButton}>Procurar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={camera} style={styles.buttonCamera}>
+                <Icon name="camera" size={20} color="#fff" />
             </TouchableOpacity>
         </View>
     </KeyboardAvoidingView>
@@ -91,6 +97,14 @@ const styles = StyleSheet.create({
     },
     button:{
         height:42,
+        backgroundColor:'#00BFFF',
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:5,
+    },
+    buttonCamera:{
+        height:42,
+        marginTop:5,
         backgroundColor:'#00BFFF',
         justifyContent:'center',
         alignItems:'center',
