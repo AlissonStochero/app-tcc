@@ -30,7 +30,7 @@ export default function BuscaMaterial({navigation}) {
     }
 
     function camera(){
-        navigation.navigate('teste')
+        navigation.navigate('LerBarCode')
     }
 
   return (

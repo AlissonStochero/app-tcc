@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
-export default class BarcodeScannerExample extends React.Component {
+export default class LerBarCode extends React.Component {
   state = {
     hasCameraPermission: null,
     scanned: false,
@@ -56,7 +57,7 @@ export default class BarcodeScannerExample extends React.Component {
         <View style={styles.form}>
           <TouchableOpacity style={styles.button} onPress={() => this.setState({ scanned: false })} >
             <Text style={styles.textButton}>
-              Ler
+              <Icon name="barcode" size={20} color="#fff" />
             </Text>
           </TouchableOpacity>
         </View>
@@ -81,12 +82,11 @@ const styles = StyleSheet.create({
   voltar: {
     height: 30,
     width: 90,
-    backgroundColor: 'rgba(0,191,255,0.5)',
+    backgroundColor: 'rgb(0,191,255)',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
     padding: 5,
-    marginBottom:450,
   },
 
   form: {
