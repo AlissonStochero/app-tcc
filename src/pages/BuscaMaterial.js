@@ -21,6 +21,7 @@ export default function BuscaMaterial({navigation}) {
             codPat,
         })
         const material = JSON.stringify(...response.data)
+        //console.log(material)
         try{
           await AsyncStorage.setItem('materialStore',material);
           navigation.navigate('MaterialDetalhes',{material});

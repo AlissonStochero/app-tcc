@@ -12,7 +12,7 @@ export default function MaterialDetalhes({navigation}) {
     useEffect(()=>{
         setMaterial(JSON.parse(navigation.getParam('material')))
         //console.log(JSON.stringify(navigation.getParam('material')))   
-    },[])
+    },[material])
 
     async function TransferirMaterial(){
         //setMaterial(JSON.stringify(material))

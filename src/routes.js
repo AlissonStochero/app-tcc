@@ -25,6 +25,12 @@ createDrawerNavigator({
         drawerIcon: <Icon name="search" size={20} color="#000" />
       }),
     },
+    MaterialDetalhes:{
+      screen: MaterialDetalhes,
+      navigationOptions: () => ({
+        drawerLabel: () => null,
+      }),
+    },
     LerBarCode:{
       screen: LerBarCode,
       navigationOptions: () => ({
