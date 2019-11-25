@@ -1,3 +1,4 @@
+import React , {useState, useEffect} from 'react';
 import {createAppContainer, createSwitchNavigator, DrawerActions} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -17,19 +18,27 @@ const Routes = (createSwitchNavigator({
     LerBarCode
 }),
 createDrawerNavigator({
-    Login,
-    BuscaMaterial,
-    MaterialDetalhes,
-    TransferirMaterial,
-    LerBarCode
-},{
-    BuscaMaterial: {
+    BuscaMaterial:{
       screen: BuscaMaterial,
+      navigationOptions: () => ({
+        title: `Procurar Material`,
+        drawerIcon: <Icon name="search" size={20} color="#000" />
+      }),
     },
-    Login: {
-        screen: Login,
-      },
-  }))
+    LerBarCode:{
+      screen: LerBarCode,
+      navigationOptions: () => ({
+        title: `Ler Codigo de Barras`,
+        drawerIcon: <Icon name="barcode" size={20} color="#000" />
+      }),
+    },
+    Login:{
+      screen: Login,
+      navigationOptions: () => ({
+        drawerIcon: <Icon name="sign-in" size={20} color="#000" />
+      }),
+    },
+}))
 
 
 export default createAppContainer(Routes);
