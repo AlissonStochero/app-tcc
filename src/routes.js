@@ -31,6 +31,12 @@ createDrawerNavigator({
         drawerLabel: () => null,
       }),
     },
+    TransferirMaterial:{
+      screen: TransferirMaterial,
+      navigationOptions: () => ({
+        drawerLabel: () => null,
+      }),
+    },
     LerBarCode:{
       screen: LerBarCode,
       navigationOptions: () => ({
