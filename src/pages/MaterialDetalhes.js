@@ -32,7 +32,7 @@ export default function MaterialDetalhes({navigation}) {
         </View>
         <View style={styles.form}>
             <Text style={styles.label}>Valor Atual: </Text>
-            <Text style={styles.dados}>{material.nome_material}</Text>
+            <Text style={styles.dados}>{material.valor_atual}</Text>
         </View>
         <View style={styles.form}>
             <Text style={styles.label}>Unidade pertencente: </Text>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
     form:{
         alignSelf:'stretch',
-        paddingHorizontal:30,
+        paddingHorizontal:20,
         flexDirection:'row',
     },
     label:{
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     input:{
         borderWidth: 1,
         borderColor:'#DDD',
-        paddingHorizontal:10,
+        paddingHorizontal:20,
         fontSize:16,
         color:'#696969',
         height:44,

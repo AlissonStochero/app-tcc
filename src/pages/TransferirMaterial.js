@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     },
     form: {
         alignSelf: 'stretch',
-        paddingHorizontal: 30,
+        paddingHorizontal: 20,
         flexDirection: 'row',
         alignItems:'center',
     },
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
         borderColor: '#DDD',
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         fontSize: 16,
         color: '#696969',
         height: 44,

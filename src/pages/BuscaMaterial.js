@@ -14,7 +14,7 @@ export default function BuscaMaterial({navigation}) {
             setCodPat(JSON.parse(navigation.getParam('dado')))
             buscarMaterial();
         }
-    },[])
+    })
 
     async function buscarMaterial(){
         const response = await api.post('/matbypat',{
