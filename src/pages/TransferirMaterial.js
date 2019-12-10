@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, AsyncStorage, Picker, KeyboardAvoidingView, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, AsyncStorage, Alert, Picker, KeyboardAvoidingView, Text, View, TouchableOpacity } from 'react-native';
 
 import api from '../services/api';
 import { apisAreAvailable } from 'expo';
@@ -12,22 +12,33 @@ export default function TransferirMaterial({ navigation }) {
     const [deptoSelect,setDeptoSelect] = useState('')
 
     async function initUnidadeDepto() {
-        const res = await api.post('/alldeptoandunidade')
-        //console.log(res.data)
-        const dep = JSON.stringify(res.data)
-        setDepto(JSON.parse(dep))
+        
+        console.log(depto);
+            const res = await api.post('/alldeptoandunidade')
+            //console.log(res.data)
+            const dep = JSON.stringify(res.data)
+            setDepto(JSON.parse(dep));
+        
     }
 
     async function initMat() {
-        const mat = JSON.stringify(navigation.getParam('material'))
-        setMaterial(JSON.parse(mat))
+        //console.log(JSON.stringify(navigation.getParam('material')));
+        let mat = JSON.stringify(navigation.getParam('material'))
+        mat = JSON.parse(mat)
+        setMaterial(mat)
+        //console.log(material)
     }
 
     useEffect(() => {
         initMat()
+        //initUnidadeDepto()
+        
+    },[material])
+    useEffect(() => {
+        //initMat()
         initUnidadeDepto()
-    }, [])
-
+        
+    },[])
     function setaUnidade(un){
         //console.log(un)
         return setUnidadeSelect(un)
@@ -44,8 +55,16 @@ export default function TransferirMaterial({ navigation }) {
             depto:deptoSelect,
         })
         if(res.data === true){
-            alert('Material Transferido')
             navigation.navigate('BuscaMaterial')
+            Alert.alert(
+                'Sucesso',
+                'Material Transferido com sucesso',
+                [
+                  
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false},
+              );
         }
     }
 
@@ -152,7 +171,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
-        paddingHorizontal: 80,
+        paddingHorizontal: 30,
     },
     dados: {
         fontSize: 18,

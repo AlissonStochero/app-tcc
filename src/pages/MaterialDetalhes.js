@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:5,
-        paddingHorizontal:50,
+        paddingHorizontal:30,
     },
     dados:{
         fontSize:18,
