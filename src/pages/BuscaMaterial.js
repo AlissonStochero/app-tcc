@@ -9,7 +9,7 @@ export default function BuscaMaterial({navigation}) {
     const [codPat,setCodPat] = useState('');
 
     useEffect(()=>{
-        //console.log(navigation.getParam('dado'))
+        console.log(navigation.getParam('dado'))
         if(navigation.getParam('dado')!==undefined){
             setCodPat(JSON.parse(navigation.getParam('dado')))
             buscarMaterial();
@@ -21,13 +21,15 @@ export default function BuscaMaterial({navigation}) {
             codPat,
         })
         const material = JSON.stringify(...response.data)
-        //console.log(material)
-        try{
-          await AsyncStorage.setItem('materialStore',material);
-          navigation.navigate('MaterialDetalhes',{material});
-      }catch(error){
-          console.log(error)
-      }
+        console.log(material)
+        if(material !== undefined){
+            try{
+                await AsyncStorage.setItem('materialStore',material);
+                navigation.navigate('MaterialDetalhes',{material});
+            }catch(error){
+                console.log(error)
+            }
+        }
     }
 
     function camera(){

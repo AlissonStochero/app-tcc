@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Button, TouchableOpacity, AsyncStorage} from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import api from '../services/api';
 
 export default class LerBarCode extends React.Component {
   state = {
@@ -23,7 +24,7 @@ export default class LerBarCode extends React.Component {
     const { hasCameraPermission, scanned } = this.state;
     const { navigate } = this.props.navigation;
 
-    voltar=()=>{
+    voltar = () => {
       this.props.navigation.navigate('BuscaMaterial')
     }
 
@@ -46,13 +47,13 @@ export default class LerBarCode extends React.Component {
           style={StyleSheet.absoluteFillObject}
         />
 
-     
-          <TouchableOpacity style={styles.voltar} onPress={voltar} >
-            <Text style={styles.textButton}>
-              voltar
+
+        <TouchableOpacity style={styles.voltar} onPress={voltar} >
+          <Text style={styles.textButton}>
+            voltar
             </Text>
-          </TouchableOpacity>
-     
+        </TouchableOpacity>
+
 
         <View style={styles.form}>
           <TouchableOpacity style={styles.button} onPress={() => this.setState({ scanned: false })} >
@@ -65,11 +66,30 @@ export default class LerBarCode extends React.Component {
     );
   }
 
+   buscarMaterial= async(codPat)=> {
+    const response = await api.post('/matbypat', {
+      codPat,
+    })
+    const material = JSON.stringify(...response.data)
+    console.log(material)
+    if (material !== undefined) {
+      try {
+        await AsyncStorage.setItem('materialStore', material);
+        this.props.navigation.navigate('MaterialDetalhes', { material });
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  };
+
   handleBarCodeScanned = ({ type, data }) => {
     this.setState({ scanned: true });
     //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
     const dado = JSON.stringify(data)
-    this.props.navigation.navigate('BuscaMaterial', { dado })
+    const codPat = dado
+    console.log(codPat);
+    this.buscarMaterial(codPat)
+    //this.props.navigation.navigate('BuscaMaterial', { dado })
   };
 }
 const styles = StyleSheet.create({
