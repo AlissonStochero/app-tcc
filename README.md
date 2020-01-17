@@ -16,6 +16,6 @@ Foi desenvolvido com o uso do framework javascript React Native
 Tela para a inserção do usuário e senha para acesso às funcionalidades do aplicativo.
 ![Login](https://github.com/AlissonStochero/app-tcc/blob/master/imagens/login.jpg)
 
-#### Tela de Procura de Material
-Tela de procura por número do patrimônio com a opção de ler código de barras.
-![Procurar Material](https://github.com/AlissonStochero/app-tcc/blob/master/imagens/login.jpg)
+#### Tela de Login
+Tela para a inserção do usuário e senha para acesso às funcionalidades do aplicativo.
+![Login](https://github.com/AlissonStochero/app-tcc/blob/master/imagens/login.jpg)
