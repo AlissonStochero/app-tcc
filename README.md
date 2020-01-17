@@ -16,6 +16,6 @@ Foi desenvolvido com o uso do framework javascript React Native
 Tela para a inserção do usuário e senha para acesso às funcionalidades do aplicativo.
 ![Login](https://github.com/AlissonStochero/app-tcc/blob/master/imagens/login.jpg)
 
-#### Tela de Login
+#### Tela de Procura de Material
 Tela para a inserção do usuário e senha para acesso às funcionalidades do aplicativo.
 ![Login](https://github.com/AlissonStochero/app-tcc/blob/master/imagens/procurarMaterial.jpg)
