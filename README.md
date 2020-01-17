@@ -17,5 +17,4 @@ Tela para a inserção do usuário e senha para acesso às funcionalidades do ap
 ![Login](https://github.com/AlissonStochero/app-tcc/blob/master/imagens/login.jpg)
 
 #### Tela de Procura de Material
-Tela de procura de material por número de patrimônio
-![Login](https://github.com/AlissonStochero/app-tcc/blob/master/imagens/procurarMaterial.jpg)
+Tela de procura de material por número de patrimônio.
